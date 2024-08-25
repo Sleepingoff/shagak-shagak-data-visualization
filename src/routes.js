@@ -4,8 +4,18 @@ export const routePaths = [
   "/canvas/01",
   "/canvas/02",
   "/chartjs",
-  "/chartjs/01",
-  "/chartjs/02",
+  "/chartjs/AreaChart",
+  "/chartjs/BarChart",
+  "/chartjs/BubbleChart",
+  "/chartjs/DoughnutChart",
+  "/chartjs/LineChart",
+  "/chartjs/PieChart",
+  "/chartjs/PolarAreaChart",
+  "/chartjs/RadarChart",
+  "/chartjs/ScatterChart",
+  "/chartjs/MixedChart",
+  "/chartjs/Olympic",
+  "/chartjs/MBTI",
   "/d3js",
   "/d3js/01",
   "/d3js/02",
@@ -44,19 +54,92 @@ export const routes = {
     key: "/chartjs",
     link: "/chartjs",
     name: "Chart.js",
-    children: ["/chartjs/01", "/chartjs/02"],
+    children: [
+      "/chartjs/AreaChart",
+      "/chartjs/BarChart",
+      "/chartjs/BubbleChart",
+      "/chartjs/DoughnutChart",
+      "/chartjs/LineChart",
+      "/chartjs/PieChart",
+      "/chartjs/PolarAreaChart",
+      "/chartjs/RadarChart",
+      "/chartjs/ScatterChart",
+      "/chartjs/MixedChart",
+      "/chartjs/Olympic",
+      "/chartjs/MBTI",
+    ],
   },
 
-  "/chartjs/01": {
-    key: "/chartjs/01",
-    link: "/chartjs/01",
-    name: "01",
+  "/chartjs/AreaChart": {
+    key: "/chartjs/AreaChart",
+    link: "/chartjs/AreaChart",
+    name: "AreaChart",
   },
 
-  "/chartjs/02": {
-    key: "/chartjs/02",
-    link: "/chartjs/02",
-    name: "02",
+  "/chartjs/BarChart": {
+    key: "/chartjs/BarChart",
+    link: "/chartjs/BarChart",
+    name: "BarChart",
+  },
+
+  "/chartjs/BubbleChart": {
+    key: "/chartjs/BubbleChart",
+    link: "/chartjs/BubbleChart",
+    name: "BubbleChart",
+  },
+
+  "/chartjs/DoughnutChart": {
+    key: "/chartjs/DoughnutChart",
+    link: "/chartjs/DoughnutChart",
+    name: "DoughnutChart",
+  },
+
+  "/chartjs/LineChart": {
+    key: "/chartjs/LineChart",
+    link: "/chartjs/LineChart",
+    name: "LineChart",
+  },
+
+  "/chartjs/PieChart": {
+    key: "/chartjs/PieChart",
+    link: "/chartjs/PieChart",
+    name: "PieChart",
+  },
+
+  "/chartjs/PolarAreaChart": {
+    key: "/chartjs/PolarAreaChart",
+    link: "/chartjs/PolarAreaChart",
+    name: "PolarAreaChart",
+  },
+
+  "/chartjs/RadarChart": {
+    key: "/chartjs/RadarChart",
+    link: "/chartjs/RadarChart",
+    name: "RadarChart",
+  },
+
+  "/chartjs/ScatterChart": {
+    key: "/chartjs/ScatterChart",
+    link: "/chartjs/ScatterChart",
+    name: "ScatterChart",
+  },
+
+  "/chartjs/MixedChart": {
+    key: "/chartjs/MixedChart",
+    link: "/chartjs/MixedChart",
+    name: "MixedChart",
+  },
+
+  "/chartjs/Olympic": {
+    key: "/chartjs/Olympic",
+    link: "/chartjs/Olympic",
+    name: "Olympic",
+  },
+
+  "/chartjs/MBTI": {
+    key: "/chartjs/MBTI",
+    link: "/chartjs/MBTI",
+    name: "MBTI",
   },
 
   "/d3js": {
