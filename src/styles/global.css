@@ -126,7 +126,7 @@ aside .subRoutes a::before {
   vertical-align: middle;
 }
 
-aside li.parent > a::before {
+aside li.parent>a::before {
   content: "";
   display: inline-block;
   vertical-align: 2px;
@@ -181,10 +181,21 @@ aside li.open.items-10 .subRoutes {
   height: calc(10 * 40px);
 }
 
-aside li.open.parent > a::before {
+aside li.open.parent>a::before {
   border-top-color: #fff;
   border-left-color: transparent;
   vertical-align: 0px;
   margin-right: 6px;
   margin-left: -10px;
+}
+
+.a11y-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
 }

@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { gnbRootList, isParentRoute, routes } from "../routes";
+import { routes, gnbRootList, isParentRoute } from "../routes";
 
 const ParentGnbItem = ({ route, currentPath }) => {
   const [open, setOpen] = useState(false);
