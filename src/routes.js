@@ -21,6 +21,8 @@ export const routePaths = [
   "/d3js/02",
   "/map",
   "/map/01",
+  "/map/01/01",
+  "/map/01/02",
   "/map/02",
   "/map/02/01",
   "/map/02/02",
@@ -178,8 +180,18 @@ export const routes = {
     key: "/map/01",
     link: "/map/01",
     name: "01 Map",
+    children: ["/map/01/01", "/map/01/02"],
   },
-
+  "/map/01/01": {
+    key: "/map/01/01",
+    link: "/map/01/01",
+    name: "01-1 Map",
+  },
+  "/map/01/02": {
+    key: "/map/01/02",
+    link: "/map/01/02",
+    name: "01-2 Custom hooks",
+  },
   "/map/02": {
     key: "/map/02",
     link: "/map/02",
