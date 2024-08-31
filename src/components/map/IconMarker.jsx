@@ -2,7 +2,7 @@ import * as L from "leaflet";
 import { useEffect } from "react";
 import useMarker from "../../hooks/useMarker";
 
-const PopupMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
+const IconMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
   const { createMarker, updateMarker, deleteMarker, isIncludeMarker } =
     useMarker();
 
@@ -33,8 +33,6 @@ const PopupMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
       } else {
         newMarker.marker.bindTooltip(children);
       }
-    } else {
-      console.warn("자식 컴포넌트로 Popup 컴포넌트가 필요합니다.");
     }
 
     return () => {
@@ -49,4 +47,4 @@ const PopupMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
   );
 };
 
-export default PopupMarker;
+export default IconMarker;

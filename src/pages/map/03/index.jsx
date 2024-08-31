@@ -1,23 +1,15 @@
-//기본 지도 생성하기
-
 import MapContainer from "../../../components/map/MapContainer";
 import TileLayer from "../../../components/map/TileLayer";
-import useGeoLocation from "../../../hooks/useGeoLocation";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import useGeoLocation from "../../../hooks/useGeoLocation";
 
-const Map01 = () => {
+const Map03 = () => {
   const { loading, position } = useGeoLocation();
-  const code = `
-  <MapContainer id="map_1" center={position}>
-    <TileLayer
-      id="map_1"
-      url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
-    />
-  </MapContainer>`;
+  const code = ``;
   return (
     <main>
       <hgroup>
-        <h3>기본 지도 가져오기</h3>
+        <h3></h3>
         <p>사용자의 현재 위치를 기준으로 기본 지도를 불러옵니다.</p>
       </hgroup>
       <div style={{ width: `100%`, height: `50vh` }}>
@@ -36,4 +28,4 @@ const Map01 = () => {
   );
 };
 
-export default Map01;
+export default Map03;

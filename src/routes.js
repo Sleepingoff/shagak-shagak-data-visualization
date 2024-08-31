@@ -22,6 +22,12 @@ export const routePaths = [
   "/map",
   "/map/01",
   "/map/02",
+  "/map/02/01",
+  "/map/02/02",
+  "/map/02/03",
+  "/map/03",
+  "/map/03/01",
+  "/map/03/02",
 ];
 
 export const routes = {
@@ -164,20 +170,52 @@ export const routes = {
   "/map": {
     key: "/map",
     link: "/map",
-    name: "Map",
-    children: ["/map/01", "/map/02"],
+    name: "Leaflet",
+    children: ["/map/01", "/map/02", "/map/03"],
   },
 
   "/map/01": {
     key: "/map/01",
     link: "/map/01",
-    name: "01",
+    name: "01 Map",
   },
 
   "/map/02": {
     key: "/map/02",
     link: "/map/02",
-    name: "02",
+    name: "02 Marker",
+    children: ["/map/02/01", "/map/02/02", "/map/02/03"],
+  },
+  "/map/02/01": {
+    key: "/map/02/01",
+    link: "/map/02/01",
+    name: "02-1 Marker",
+  },
+  "/map/02/02": {
+    key: "/map/02/02",
+    link: "/map/02/02",
+    name: "02-2 Custom Marker",
+  },
+  "/map/02/03": {
+    key: "/map/02/03",
+    link: "/map/02/03",
+    name: "02-3 Popup & Tooltip",
+  },
+  "/map/03": {
+    key: "/map/03",
+    link: "/map/03",
+    name: "03 Data",
+    children: ["/map/03/01", "/map/03/02"],
+  },
+  "/map/03/01": {
+    key: "/map/03/01",
+    link: "/map/03/01",
+    name: "03-1 CSV",
+  },
+  "/map/03/02": {
+    key: "/map/03/02",
+    link: "/map/03/02",
+    name: "03-2 GeoJSON",
   },
 };
 
