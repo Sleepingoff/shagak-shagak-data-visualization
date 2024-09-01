@@ -1,44 +1,36 @@
-import * as L from "leaflet";
 import { useEffect } from "react";
 import useMarker from "../../hooks/useMarker";
 
-const PopupMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
+const PopupMarker = ({
+  latlng: [lat, lng],
+  children,
+  id,
+  open,
+  popup,
+  ...props
+}) => {
   const { createMarker, updateMarker, deleteMarker, isIncludeMarker } =
     useMarker();
 
-  const { icon } = options;
-  const Icon = L.icon({ iconUrl: icon ?? "../../../public/vite.svg" });
-
   useEffect(() => {
     let newMarker;
-
-    if (isIncludeMarker(props.key))
-      newMarker = updateMarker(props.key, [lat, lng], {
-        ...options,
-        icon: Icon,
-      });
-    else
-      newMarker = createMarker(props.key, [lat, lng], {
-        ...options,
-        icon: Icon,
-      });
+    if (isIncludeMarker(id)) newMarker = updateMarker(id, [lat, lng]);
+    else newMarker = createMarker(id, [lat, lng]);
 
     //popup 또는 tooltip 추가
     if (children) {
-      if (typeof children !== "string" && children.length > 0) {
-        children.map((child) => {
-          if (child.type?.name === "Popup") newMarker.marker.bindPopup(child);
-          else newMarker.marker.bindTooltip(child);
-        });
+      console.log(children);
+      if (popup) {
+        newMarker.marker.bindPopup(children);
+        if (open) newMarker.marker.openPopup();
       } else {
         newMarker.marker.bindTooltip(children);
+        if (open) newMarker.marker.openTooltip();
       }
-    } else {
-      console.warn("자식 컴포넌트로 Popup 컴포넌트가 필요합니다.");
     }
 
     return () => {
-      deleteMarker(props.key);
+      deleteMarker(id);
     };
   }, []);
 

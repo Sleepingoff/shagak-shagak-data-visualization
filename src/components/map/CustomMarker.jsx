@@ -2,25 +2,32 @@ import * as L from "leaflet";
 import { useEffect } from "react";
 import useMarker from "../../hooks/useMarker";
 
-const IconMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
+const CustomMarker = ({
+  latlng: [lat, lng],
+  options: { iconUrl, iconSize, ...rest },
+  children,
+  id,
+  ...props
+}) => {
   const { createMarker, updateMarker, deleteMarker, isIncludeMarker } =
     useMarker();
-
-  const { icon } = options;
-  const Icon = L.icon({ iconUrl: icon ?? "../../../public/vite.svg" });
+  const Icon = L.icon({ iconUrl, iconSize });
+  const markerOptions = iconUrl
+    ? { ...rest, icon: Icon }
+    : rest
+    ? { ...rest }
+    : undefined;
 
   useEffect(() => {
     let newMarker;
 
-    if (isIncludeMarker(props.key))
-      newMarker = updateMarker(props.key, [lat, lng], {
-        ...options,
-        icon: Icon,
+    if (isIncludeMarker(id))
+      newMarker = updateMarker(id, [lat, lng], {
+        ...markerOptions,
       });
     else
-      newMarker = createMarker(props.key, [lat, lng], {
-        ...options,
-        icon: Icon,
+      newMarker = createMarker(id, [lat, lng], {
+        ...markerOptions,
       });
 
     //popup 또는 tooltip 추가
@@ -36,9 +43,9 @@ const IconMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
     }
 
     return () => {
-      deleteMarker(props.key);
+      deleteMarker(id);
     };
-  }, []);
+  }, [iconUrl]);
 
   return (
     <b className="a11y-hidden" {...props}>
@@ -47,4 +54,4 @@ const IconMarker = ({ latlng: [lat, lng], options, children, ...props }) => {
   );
 };
 
-export default IconMarker;
+export default CustomMarker;

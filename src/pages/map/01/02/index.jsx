@@ -1,54 +1,68 @@
+import MapContainer from "../../../../components/map/MapContainer";
+import TileLayer from "../../../../components/map/TileLayer";
+import useGeoLocation from "../../../../hooks/useGeoLocation";
+
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 
 const Map0102 = () => {
-  const codeUseMap = `
-import { createContext, useContext } from "react";
+  const { loading, position } = useGeoLocation();
+  const code = `import { useEffect } from "react";
+import * as L from "leaflet";
+import useMap from "../../hooks/useMap";
 
-export const LeafletContext = createContext(null);
-
-const useMap = () => {
-  const value = useContext(LeafletContext);
-
-  return value;
-};
-
-export default useMap;
-
-    `;
-
-  const codeUseGeoLocation = `
-import { useEffect, useState } from "react";
-
-const useGeoLocation = () => {
-  const [loading, setLoading] = useState(true);
-  const [position, setPosition] = useState([]);
-
-  const onSuccess = (position) => {
-    const currentPosition = position.coords;
-    setPosition([currentPosition.latitude, currentPosition.longitude]);
-    setLoading(false);
-  };
-
-  const onError = (error) => {
-    console.log(\`ERROR(\${error.code}): \${error.message}\`);
-    setLoading(true);
-  };
-
+const TileLayer = ({ id, url, attribution, options }) => {
+  const { value, dispatch } = useMap();
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    if (!value.map) return;
+    const currentMap = value.map;
+    const tileLayer = L.tileLayer(url, {
+      id: id,
+      attribution,
+      ...options,
+    }).addTo(currentMap);
+
+    currentMap.options.layers = tileLayer;
+    dispatch({
+      type: "create",
+      value: { ...value, map: currentMap },
+    });
+    return () => {
+      value.map.removeLayer(tileLayer);
+    };
   }, []);
 
-  return { position, loading };
+  return null;
 };
 
-export default useGeoLocation;
-
-    `;
+export default TileLayer;`;
   return (
     <main>
-      01-2 hooks
-      <SyntaxHighlighter>{codeUseMap}</SyntaxHighlighter>
-      <SyntaxHighlighter>{codeUseGeoLocation}</SyntaxHighlighter>
+      <hgroup>
+        <h2>01-2 TileLayer</h2>
+        <p>실제 지도를 가져옵니다. </p>
+      </hgroup>
+      <section>
+        {!loading && (
+          <MapContainer
+            id="map_1"
+            center={position}
+            style={{ height: "50vh", width: "100%" }}
+          >
+            <TileLayer
+              id="map_2"
+              url={
+                "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_nolabels/{z}/{x}/{y}{r}.png"
+              }
+              attribution={"01"}
+            />
+          </MapContainer>
+        )}
+      </section>
+      <section>
+        <SyntaxHighlighter showLineNumbers language="jsx">
+          {code}
+        </SyntaxHighlighter>
+      </section>
     </main>
   );
 };

@@ -33,11 +33,12 @@ const reducer = (state, action) => {
       state.center = value.center ?? state.center;
       state.zoom = value.zoom ?? state.zoom;
       state.marker = value.marker ?? state.marker;
-
+      state.popup = value.popup ?? state.popup;
       state.marker &&
         state.marker.forEach((mark) => {
           mark && mark.marker.addTo(state.map);
         });
+
       break;
     }
     case "delete": {
@@ -50,7 +51,7 @@ const reducer = (state, action) => {
   return state;
 };
 
-const MapContainer = ({ center, id, children, ...props }) => {
+const MapContainer = ({ center, id = "map", children, ...props }) => {
   const [value, dispatch] = useReducer(reducer, initValue);
 
   const mapRef = useRef(null);
@@ -75,9 +76,14 @@ const MapContainer = ({ center, id, children, ...props }) => {
   }, [center, id, value]);
 
   return (
-    <div id={id} ref={mapRef} style={{ width: `100%`, height: `100%` }}>
+    <div
+      id={id}
+      ref={mapRef}
+      style={{ width: `100%`, height: `100%` }}
+      {...props}
+    >
       {map && (
-        <LeafletContext.Provider value={{ value, dispatch }} {...props}>
+        <LeafletContext.Provider value={{ value, dispatch }}>
           {children}
         </LeafletContext.Provider>
       )}

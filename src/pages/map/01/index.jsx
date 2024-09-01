@@ -1,10 +1,8 @@
-//기본 지도 생성하기
-
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import "../../../styles/map.css";
 import MapContainer from "../../../components/map/MapContainer";
 import TileLayer from "../../../components/map/TileLayer";
 import useGeoLocation from "../../../hooks/useGeoLocation";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-
 const Map01 = () => {
   const { loading, position } = useGeoLocation();
   const code = `
@@ -13,25 +11,29 @@ const Map01 = () => {
       id="map_1"
       url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
     />
-  </MapContainer>`;
+  </MapContainer>
+  `;
   return (
     <main>
       <hgroup>
-        <h3>기본 지도 가져오기</h3>
-        <p>사용자의 현재 위치를 기준으로 기본 지도를 불러옵니다.</p>
+        <h3>01 Map</h3>
+        <p></p>
       </hgroup>
-      <div style={{ width: `100%`, height: `50vh` }}>
-        {!loading && (
-          <MapContainer id="map_1" center={position}>
-            <TileLayer
-              id="map_1"
-              url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
-              attribution={"01"}
-            />
-          </MapContainer>
-        )}
-      </div>
-      <SyntaxHighlighter language="jsx">{code}</SyntaxHighlighter>
+      <section>
+        <h4>기본 지도 불러오기</h4>
+        <div style={{ width: `100%`, height: `50vh` }}>
+          {!loading && (
+            <MapContainer id="map_1" center={position}>
+              <TileLayer
+                id="map_1"
+                url={"https://tile.openstreetmap.org/{z}/{x}/{y}.png"}
+                attribution={"01"}
+              />
+            </MapContainer>
+          )}
+        </div>
+        <SyntaxHighlighter language="jsx">{code}</SyntaxHighlighter>
+      </section>
     </main>
   );
 };

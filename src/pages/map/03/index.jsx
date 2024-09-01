@@ -9,7 +9,7 @@ const Map03 = () => {
   return (
     <main>
       <hgroup>
-        <h3></h3>
+        <h2>03 Data</h2>
         <p>사용자의 현재 위치를 기준으로 기본 지도를 불러옵니다.</p>
       </hgroup>
       <div style={{ width: `100%`, height: `50vh` }}>

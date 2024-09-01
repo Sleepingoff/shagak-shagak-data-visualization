@@ -4,13 +4,15 @@ import { useEffect, useState } from "react";
 
 const useMarker = () => {
   const { value, dispatch } = useMap();
-
   const currentMarkers = [...value.marker];
   const [markers, setMarkers] = useState(currentMarkers);
 
   useEffect(() => {
-    dispatch({ type: "update", value: { ...value, marker: markers } });
-  }, [dispatch, markers, value]);
+    dispatch({
+      type: "update",
+      value: { ...value, marker: markers },
+    });
+  }, [markers]);
 
   const isIncludeMarker = (markerId) =>
     !currentMarkers.every((marker) => marker.id != markerId);
@@ -34,10 +36,10 @@ const useMarker = () => {
 
   const updateMarker = (markerId, [lat, lng], options) => {
     const targetMarker = findMarker(markerId);
-    const currentOptions = targetMarker.marker.options;
+    const { marker, ...rest } = targetMarker;
     const copyMarker = {
-      ...targetMarker,
-      marker: L.marker([lat, lng], options ? options : currentOptions),
+      ...rest,
+      marker: L.marker([lat, lng], options),
     };
     const otherMarkers = exceptMarkers(markerId);
     setMarkers([...otherMarkers, copyMarker]);

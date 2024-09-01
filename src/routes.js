@@ -23,6 +23,7 @@ export const routePaths = [
   "/map/01",
   "/map/01/01",
   "/map/01/02",
+  "/map/01/03",
   "/map/02",
   "/map/02/01",
   "/map/02/02",
@@ -180,17 +181,22 @@ export const routes = {
     key: "/map/01",
     link: "/map/01",
     name: "01 Map",
-    children: ["/map/01/01", "/map/01/02"],
+    children: ["/map/01/01", "/map/01/02", "/map/01/03"],
   },
   "/map/01/01": {
     key: "/map/01/01",
     link: "/map/01/01",
-    name: "01-1 Map",
+    name: "01-1 MapContainer",
   },
   "/map/01/02": {
     key: "/map/01/02",
     link: "/map/01/02",
-    name: "01-2 Custom hooks",
+    name: "01-2 TileLayer",
+  },
+  "/map/01/03": {
+    key: "/map/01/03",
+    link: "/map/01/03",
+    name: "01-3 Custom hooks",
   },
   "/map/02": {
     key: "/map/02",
@@ -206,12 +212,12 @@ export const routes = {
   "/map/02/02": {
     key: "/map/02/02",
     link: "/map/02/02",
-    name: "02-2 Custom Marker",
+    name: "02-2 Popup & Tooltip ",
   },
   "/map/02/03": {
     key: "/map/02/03",
     link: "/map/02/03",
-    name: "02-3 Popup & Tooltip",
+    name: "02-3Custom Marker",
   },
   "/map/03": {
     key: "/map/03",

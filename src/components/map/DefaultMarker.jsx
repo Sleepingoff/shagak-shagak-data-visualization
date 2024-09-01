@@ -1,22 +1,16 @@
 import { useEffect } from "react";
 import useMarker from "../../hooks/useMarker";
 
-const DefaultMarker = ({
-  latlng: [lat, lng],
-  options = {},
-  children,
-  ...props
-}) => {
+const DefaultMarker = ({ latlng: [lat, lng], children, id, ...props }) => {
   const { createMarker, updateMarker, deleteMarker, isIncludeMarker } =
     useMarker();
 
   useEffect(() => {
-    if (isIncludeMarker(props.key))
-      updateMarker(props.key, [lat, lng], options);
-    else createMarker(props.key, [lat, lng], options);
+    if (isIncludeMarker(id)) updateMarker(id, [lat, lng]);
+    else createMarker(id, [lat, lng]);
 
     return () => {
-      deleteMarker(props.key);
+      deleteMarker(id);
     };
   }, []);
 
